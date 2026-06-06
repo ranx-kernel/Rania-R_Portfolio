@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rania R — Intelligent Systems & Software Engineering Portfolio</title>
+  <script>
+    (function() {
+      const theme = localStorage.getItem('theme') || 'dark';
+      if (theme === 'light') {
+        document.documentElement.classList.add('light-theme');
+      }
+    })();
+  </script>
+  <meta name="description" content="Futuristic interactive portfolio of Rania R. Exploring software engineering, AI, cybersecurity, and computer vision to build future-ready systems.">
+  <meta name="keywords" content="Rania R, Portfolio, Software Engineering, AI, Computer Vision, Cybersecurity, Interactive Web, GSAP">
+  <meta name="author" content="Rania R">
+
+  <!-- Open Graph / Social Cards -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Rania R — Intelligent Systems & Software Engineering">
+  <meta property="og:description" content="Combining software engineering, AI, and innovation to build future-ready systems.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;700;900&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Custom Cursor Elements -->
+  <div id="custom-cursor"></div>
+  <div id="custom-cursor-glow"></div>
+
+  <!-- Living Background Environment Layer -->
+  <canvas id="bg-canvas"></canvas>
+  <div class="ambient-glows">
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+    <div class="glow-3"></div>
+  </div>
+
+  <!-- Cinema Loading Screen Overlay -->
+  <div id="cinema-loader">
+    <div class="loader-content">
+      <!-- Loader Start Panel: Boot Gesture Screen -->
+      <div id="loader-start-panel" class="loader-panel">
+        <div class="loader-hud animate-pulse-glow">
+          <svg class="hud-circle" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" stroke="rgba(0, 229, 255, 0.2)" stroke-width="1.5" fill="none" />
+            <circle class="hud-spin" cx="50" cy="50" r="45" stroke="#00E5FF" stroke-width="2" stroke-dasharray="283" stroke-dashoffset="200" fill="none" />
+            <circle class="hud-spin-reverse" cx="50" cy="50" r="38" stroke="#7B2FF7" stroke-width="1" stroke-dasharray="238" stroke-dashoffset="100" fill="none" stroke-linecap="round" />
+          </svg>
+          <span class="hud-logo">R</span>
+        </div>
+        <h1 class="loader-welcome-title">RANIA R</h1>
+        <p class="loader-welcome-subtitle">INTELLIGENT SYSTEMS PORTFOLIO OS</p>
+        <button id="btn-boot-system" class="btn btn-boot magnetic-light">
+          <span>INITIALIZE SYSTEM ENGINE</span>
+          <i data-lucide="power"></i>
+        </button>
+        <p class="loader-boot-note">User gesture required for speech synthesis and audio initialization.</p>
+      </div>
+
+      <!-- Loader Running Panel: Boot Sequence Logs & Progress -->
+      <div id="loader-running-panel" class="loader-panel" style="display: none;">
+        <div class="loader-hud">
+          <svg class="hud-circle" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" stroke="rgba(0, 229, 255, 0.2)" stroke-width="1.5" fill="none" />
+            <circle class="hud-spin" cx="50" cy="50" r="45" stroke="#00E5FF" stroke-width="2" stroke-dasharray="283" stroke-dashoffset="200" fill="none" />
+            <circle class="hud-spin-reverse" cx="50" cy="50" r="38" stroke="#7B2FF7" stroke-width="1" stroke-dasharray="238" stroke-dashoffset="100" fill="none" stroke-linecap="round" />
+          </svg>
+          <span class="hud-logo">R</span>
+        </div>
+        <div class="loader-terminal">
+          <div class="terminal-header">
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+            <span class="terminal-dot"></span>
+            <span class="terminal-title">BOOT_SEQUENCE.SH</span>
+          </div>
+          <div class="terminal-body" id="loader-terminal-logs">
+            <!-- Typewriter logs inserted via JS -->
+          </div>
+        </div>
+        <div class="loader-progress-container">
+          <div class="loader-progress-info">
+            <span class="status-text">INITIALIZING ENGINE</span>
+            <span class="percent-text">0%</span>
+          </div>
+          <div class="loader-progress-bar">
+            <div class="loader-progress-fill"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Navigation Dock -->
+  <nav class="nav-dock" id="nav-dock">
+    <div class="nav-dock-backdrop"></div>
+    <div class="nav-dock-links">
+      <a href="#hero" class="nav-link active" data-target="hero">
+        <i data-lucide="home"></i>
+        <span>Home</span>
+      </a>
+      <a href="#about" class="nav-link" data-target="about">
+        <i data-lucide="user"></i>
+        <span>About</span>
+      </a>
+      <a href="#skills" class="nav-link" data-target="skills">
+        <i data-lucide="cpu"></i>
+        <span>Skills</span>
+      </a>
+      <a href="#projects" class="nav-link" data-target="projects">
+        <i data-lucide="layers"></i>
+        <span>Projects</span>
+      </a>
+      <a href="#contributions" class="nav-link" data-target="contributions">
+        <i data-lucide="git-branch"></i>
+        <span>Timeline</span>
+      </a>
+      <a href="#vision" class="nav-link" data-target="vision">
+        <i data-lucide="milestone"></i>
+        <span>Roadmap</span>
+      </a>
+      <a href="#contact" class="nav-link" data-target="contact">
+        <i data-lucide="mail"></i>
+        <span>Contact</span>
+      </a>
+      <button id="btn-theme-toggle" class="nav-link theme-toggle-btn" title="Toggle Theme (Alt+T)" style="background:none; border:none; color:inherit; font:inherit; cursor:pointer;">
+        <i data-lucide="sun" class="theme-icon-sun"></i>
+        <i data-lucide="moon" class="theme-icon-moon" style="display:none;"></i>
+        <span>Theme</span>
+      </button>
+    </div>
+    <div class="nav-dock-pill"></div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="page-wrapper">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="section hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span class="badge-dot"></span>
+            <span class="badge-text">SYSTEM CORE ENGINE v1.2</span>
+          </div>
+          <h1 class="hero-name">RANIA R</h1>
+          <h2 class="hero-headline">Combining software engineering, AI, and innovation to build future-ready systems.</h2>
+          
+          <div class="typewriter-container">
+            <span class="typewriter-prefix">_</span>
+            <span class="typewriter-text" id="typewriter"></span>
+            <span class="typewriter-cursor">|</span>
+          </div>
+
+          <p class="hero-description">
+            Developing high-performance software architectures, implementing intelligent frameworks, and building secure systems.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#projects" class="btn btn-primary magnetic" id="btn-explore">
+              <span>Explore Projects</span>
+              <i data-lucide="arrow-up-right"></i>
+            </a>
+            <a href="mailto:rania63800@gmail.com" class="btn btn-secondary magnetic" id="btn-contact">
+              <span>Contact Me</span>
+              <i data-lucide="send"></i>
+            </a>
+          </div>
+
+          <div class="hero-socials">
+            <a href="https://github.com/ranx-kernel" target="_blank" class="social-icon magnetic" title="GitHub">
+              <i><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></i>
+            </a>
+            <a href="https://www.linkedin.com/in/rania-r-942a33373" target="_blank" class="social-icon magnetic" title="LinkedIn">
+              <i><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></i>
+            </a>
+            <a href="mailto:rania63800@gmail.com" class="social-icon magnetic" title="Gmail">
+              <i data-lucide="mail"></i>
+            </a>
+            <a href="#" class="social-icon magnetic" title="Download Resume">
+              <i data-lucide="file-text"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="portrait-wrapper" id="portrait-3d-container">
+            <div class="portrait-glow"></div>
+            <!-- Pulsing neon rings behind the portrait -->
+            <div class="neon-ring ring-1"></div>
+            <div class="neon-ring ring-2"></div>
+            <div class="portrait-card">
+              <!-- Grid overlay -->
+              <div class="hud-grid-overlay"></div>
+              <!-- Sweeping radar laser -->
+              <div class="radar-sweep"></div>
+              <!-- Portrait Image -->
+              <img src="assets/images/portrait_gray.jpg" alt="Rania R Portrait" class="portrait-img">
+              <!-- Holographic Scanline Overlay -->
+              <div class="scanlines"></div>
+              <div class="vignette"></div>
+            </div>
+
+            <!-- Floating Tech HUD Panels -->
+            <div class="hud-panel hud-left magnetic-light" data-speed="0.05">
+              <div class="hud-header">
+                <i data-lucide="terminal"></i>
+                <span>CORE_STATUS</span>
+              </div>
+              <div class="hud-value">ONLINE</div>
+            </div>
+
+            <div class="hud-panel hud-right magnetic-light" data-speed="-0.03">
+              <div class="hud-header">
+                <i data-lucide="shield-check"></i>
+                <span>SECURE_LAYER</span>
+              </div>
+              <div class="hud-value">VERIFIED</div>
+            </div>
+
+            <div class="hud-panel hud-bottom magnetic-light" data-speed="0.08">
+              <div class="hud-header">
+                <i data-lucide="brain-circuit"></i>
+                <span>AI_AGENT_ENGINE</span>
+              </div>
+              <div class="hud-value">ACTIVE (98.4%)</div>
+              <!-- Live Data Waveform -->
+              <div class="live-wave">
+                <span class="wave-bar bar-1"></span>
+                <span class="wave-bar bar-2"></span>
+                <span class="wave-bar bar-3"></span>
+                <span class="wave-bar bar-4"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="section about-section">
+      <div class="container">
+        <div class="section-header scroll-reveal">
+          <div class="section-tag">// IDENTITY PROFILE</div>
+          <h2 class="section-title">ENGINEERING INTELLIGENCE</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-text scroll-reveal">
+            <p class="highlight-text">
+              Rania R is a Computer Science Engineering student from Kanniyakumari, Tamil Nadu, currently studying at Prathyusha Engineering College affiliated with Anna University, Chennai.
+            </p>
+            <p>
+              Passionate about software engineering, artificial intelligence, intelligent systems, and modern digital technologies.
+            </p>
+            <p>
+              Focused on building real-world solutions using software development, AI-assisted engineering, computer vision, secure systems, and scalable applications.
+            </p>
+            <p>
+              Actively contributes to open-source communities and continuously explores emerging technologies, modern development workflows, and innovative digital experiences.
+            </p>
+          </div>
+
+          <div class="about-cards">
+            <!-- Pillars of Rania's mindset -->
+            <div class="glass-card pillar-card scroll-reveal">
+              <div class="pillar-icon-box">
+                <i data-lucide="binary"></i>
+              </div>
+              <h3 class="pillar-title">Engineering Mindset</h3>
+              <p class="pillar-desc">Solving architectural issues, designing clean logic patterns, and debugging system bottlenecks.</p>
+            </div>
+
+            <div class="glass-card pillar-card scroll-reveal">
+              <div class="pillar-icon-box">
+                <i data-lucide="brain"></i>
+              </div>
+              <h3 class="pillar-title">Intelligent Systems</h3>
+              <p class="pillar-desc">Integrating computer vision models, data analytics pipelines, and AI workflows into scalable frameworks.</p>
+            </div>
+
+            <div class="glass-card pillar-card scroll-reveal">
+              <div class="pillar-icon-box">
+                <i data-lucide="shield"></i>
+              </div>
+              <h3 class="pillar-title">Secure & Resilient</h3>
+              <p class="pillar-desc">Developing projects with modern defensive programming patterns and endpoint security tracking.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION & METRICS SECTION -->
+    <section id="mission" class="section mission-section">
+      <div class="container text-center">
+        <div class="mission-wrapper scroll-reveal">
+          <div class="mission-tag">// THE CORE VISION</div>
+          <h2 class="mission-title">“Building intelligent technology experiences for the future.”</h2>
+        </div>
+
+        <div class="metrics-grid">
+          <div class="metric-card glass-card scroll-reveal" data-target-num="7">
+            <div class="metric-glow"></div>
+            <div class="metric-number">0</div>
+            <div class="metric-label">Projects Built</div>
+          </div>
+          <div class="metric-card glass-card scroll-reveal" data-target-num="50">
+            <div class="metric-glow"></div>
+            <div class="metric-number">0</div>
+            <div class="metric-label">Open Source Contributions</div>
+          </div>
+          <div class="metric-card glass-card scroll-reveal" data-target-num="15">
+            <div class="metric-glow"></div>
+            <div class="metric-number">0</div>
+            <div class="metric-label">Technologies Explored</div>
+          </div>
+          <div class="metric-card glass-card scroll-reveal" data-target-num="5">
+            <div class="metric-glow"></div>
+            <div class="metric-number">0</div>
+            <div class="metric-label">Systems Developed</div>
+          </div>
+          <div class="metric-card glass-card scroll-reveal" data-target-num="1000">
+            <div class="metric-glow"></div>
+            <div class="metric-number">0</div>
+            <div class="metric-label">Continuous Learning Hours</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNICAL SKILLS SECTION -->
+    <section id="skills" class="section skills-section">
+      <div class="container">
+        <div class="section-header scroll-reveal">
+          <div class="section-tag">// TECH MATRIX</div>
+          <h2 class="section-title">SKILLS ENGINE</h2>
+        </div>
+
+        <div class="skills-grid">
+          <!-- Programming -->
+          <div class="glass-card skill-group-card scroll-reveal">
+            <div class="spotlight"></div>
+            <div class="card-edge-glow"></div>
+            <div class="skill-group-header">
+              <i data-lucide="code-2"></i>
+              <h3>Programming</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">Java</span>
+              <span class="skill-tag">C</span>
+              <span class="skill-tag">SQL</span>
+            </div>
+          </div>
+
+          <!-- Software Engineering -->
+          <div class="glass-card skill-group-card scroll-reveal">
+            <div class="spotlight"></div>
+            <div class="card-edge-glow"></div>
+            <div class="skill-group-header">
+              <i data-lucide="layers"></i>
+              <h3>Software Engineering</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">Application Dev</span>
+              <span class="skill-tag">OOP</span>
+              <span class="skill-tag">Debugging</span>
+              <span class="skill-tag">Problem Solving</span>
+              <span class="skill-tag">Scalable Systems</span>
+            </div>
+          </div>
+
+          <!-- AI -->
+          <div class="glass-card skill-group-card scroll-reveal">
+            <div class="spotlight"></div>
+            <div class="card-edge-glow"></div>
+            <div class="skill-group-header">
+              <i data-lucide="brain-circuit"></i>
+              <h3>Artificial Intelligence</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">Machine Learning</span>
+              <span class="skill-tag">Computer Vision</span>
+              <span class="skill-tag">Image Processing</span>
+              <span class="skill-tag">AI Tools</span>
+              <span class="skill-tag">Data Analysis</span>
+            </div>
+          </div>
+
+          <!-- Cybersecurity -->
+          <div class="glass-card skill-group-card scroll-reveal">
+            <div class="spotlight"></div>
+            <div class="card-edge-glow"></div>
+            <div class="skill-group-header">
+              <i data-lucide="shield-alert"></i>
+              <h3>Cybersecurity</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">Threat Detection</span>
+              <span class="skill-tag">Secure Coding</span>
+              <span class="skill-tag">Vulnerability Analysis</span>
+              <span class="skill-tag">Intelligent Monitoring</span>
+              <span class="skill-tag">System Protection</span>
+            </div>
+          </div>
+
+          <!-- Dev Tools -->
+          <div class="glass-card skill-group-card scroll-reveal">
+            <div class="spotlight"></div>
+            <div class="card-edge-glow"></div>
+            <div class="skill-group-header">
+              <i data-lucide="wrench"></i>
+              <h3>Development Tools</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">Git</span>
+              <span class="skill-tag">GitHub</span>
+              <span class="skill-tag">Cursor</span>
+              <span class="skill-tag">GitHub Copilot</span>
+              <span class="skill-tag">Antigravity AI</span>
+              <span class="skill-tag">VS Code</span>
+            </div>
+          </div>
+
+          <!-- Core CS -->
+          <div class="glass-card skill-group-card scroll-reveal">
+            <div class="spotlight"></div>
+            <div class="card-edge-glow"></div>
+            <div class="skill-group-header">
+              <i data-lucide="library"></i>
+              <h3>Core CS</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">Data Structures</span>
+              <span class="skill-tag">Algorithms</span>
+              <span class="skill-tag">DBMS</span>
+              <span class="skill-tag">Operating Systems</span>
+            </div>
+          </div>
+
+          <!-- Soft Skills -->
+          <div class="glass-card skill-group-card scroll-reveal">
+            <div class="spotlight"></div>
+            <div class="card-edge-glow"></div>
+            <div class="skill-group-header">
+              <i data-lucide="users-2"></i>
+              <h3>Soft Skills</h3>
+            </div>
+            <div class="skill-items">
+              <span class="skill-tag">Communication</span>
+              <span class="skill-tag">Collaboration</span>
+              <span class="skill-tag">Teamwork</span>
+              <span class="skill-tag">Analytical Thinking</span>
+              <span class="skill-tag">Adaptability</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECT SHOWCASE SECTION -->
+    <section id="projects" class="section projects-section">
+      <div class="container">
+        <div class="section-header scroll-reveal">
+          <div class="section-tag">// ARTIFACTS</div>
+          <h2 class="section-title">PROJECT SHOWCASE</h2>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Cipher Fortress -->
+          <div class="glass-card project-card scroll-reveal" data-project="cipher-fortress">
+            <div class="project-border-glow"></div>
+            <div class="project-header">
+              <div class="project-cat">Cybersecurity & AI</div>
+              <h3 class="project-title">Cipher Fortress</h3>
+            </div>
+            <div class="project-visual">
+              <img src="assets/images/cipher_fortress.png" alt="Cipher Fortress Security Interface" class="project-img">
+              <div class="visual-label">INTELLIGENT ENDPOINT MONITOR</div>
+            </div>
+            <p class="project-desc">A high-fidelity endpoint security monitor designed to analyze anomalies and block vulnerabilities using AI workflows.</p>
+            <div class="project-tags">
+              <span>Python</span>
+              <span>Secure Shell</span>
+              <span>Threat Intelligence</span>
+            </div>
+            <button class="project-action magnetic-light">
+              <span>Analyze Module</span>
+              <i data-lucide="chevron-right"></i>
+            </button>
+          </div>
+
+          <!-- MediQ -->
+          <div class="glass-card project-card scroll-reveal" data-project="mediq">
+            <div class="project-border-glow"></div>
+            <div class="project-header">
+              <div class="project-cat">Database & Architecture</div>
+              <h3 class="project-title">MediQ</h3>
+            </div>
+            <div class="project-visual">
+              <img src="assets/images/mediq.png" alt="MediQ Database Flow Dashboard" class="project-img">
+              <div class="visual-label">OPTIMIZED DB FLOW ENGINE</div>
+            </div>
+            <p class="project-desc">A healthcare analytics application focusing on optimized query processing, security tracking, and clinical records flow.</p>
+            <div class="project-tags">
+              <span>SQL</span>
+              <span>Java</span>
+              <span>App Engineering</span>
+            </div>
+            <button class="project-action magnetic-light">
+              <span>Analyze Module</span>
+              <i data-lucide="chevron-right"></i>
+            </button>
+          </div>
+
+          <!-- SentinelX -->
+          <div class="glass-card project-card scroll-reveal" data-project="sentinelx">
+            <div class="project-border-glow"></div>
+            <div class="project-header">
+              <div class="project-cat">Computer Vision & Safety</div>
+              <h3 class="project-title">SentinelX</h3>
+            </div>
+            <div class="project-visual">
+              <img src="assets/images/sentinelx.png" alt="SentinelX Safety CV Detection Feed" class="project-img">
+              <div class="visual-label">REAL-TIME CV DETECTOR</div>
+            </div>
+            <p class="project-desc">A real-time safety monitoring solution identifying personal protective equipment compliance using neural detection models.</p>
+            <div class="project-tags">
+              <span>Computer Vision</span>
+              <span>Python</span>
+              <span>Real-time Video</span>
+            </div>
+            <button class="project-action magnetic-light">
+              <span>Analyze Module</span>
+              <i data-lucide="chevron-right"></i>
+            </button>
+          </div>
+
+          <!-- ML-Based Morphed Photo Detector -->
+          <div class="glass-card project-card scroll-reveal" data-project="morphed-detector">
+            <div class="project-border-glow"></div>
+            <div class="project-header">
+              <div class="project-cat">Machine Learning & Image Analysis</div>
+              <h3 class="project-title">ML-Morphed Photo Detector</h3>
+            </div>
+            <div class="project-visual">
+              <img src="assets/images/morphed_detector.png" alt="ML-Morphed Photo Detector Dashboard" class="project-img">
+              <div class="visual-label">IMAGE ANALYSIS ENGINE</div>
+            </div>
+            <p class="project-desc">Developed a machine learning model to detect manipulated and morphed images using advanced image analysis techniques and pattern recognition.</p>
+            <div class="project-tags">
+              <span>Machine Learning</span>
+              <span>Image Processing</span>
+              <span>Python</span>
+            </div>
+            <button class="project-action magnetic-light">
+              <span>Analyze Module</span>
+              <i data-lucide="chevron-right"></i>
+            </button>
+          </div>
+
+          <!-- DefendX Cybersecurity -->
+          <div class="glass-card project-card scroll-reveal" data-project="defendx">
+            <div class="project-border-glow"></div>
+            <div class="project-header">
+              <div class="project-cat">Cybersecurity & Defense</div>
+              <h3 class="project-title">DefendX</h3>
+            </div>
+            <div class="project-visual">
+              <img src="assets/images/defendx.png" alt="DefendX Vulnerability Scanner" class="project-img">
+              <div class="visual-label">VULNERABILITY DETECTION</div>
+            </div>
+            <p class="project-desc">Cybersecurity project aimed at identifying vulnerabilities and improving system defense mechanisms through advanced threat analysis.</p>
+            <div class="project-tags">
+              <span>Cybersecurity</span>
+              <span>Vulnerability Assessment</span>
+              <span>Defense Systems</span>
+            </div>
+            <button class="project-action magnetic-light">
+              <span>Analyze Module</span>
+              <i data-lucide="chevron-right"></i>
+            </button>
+          </div>
+
+          <!-- Machine Learning Projects -->
+          <div class="glass-card project-card scroll-reveal" data-project="ml-projects">
+            <div class="project-border-glow"></div>
+            <div class="project-header">
+              <div class="project-cat">Machine Learning & Prediction</div>
+              <h3 class="project-title">ML Projects</h3>
+            </div>
+            <div class="project-visual">
+              <img src="assets/images/ml_projects.png" alt="ML Predictive Models Dashboard" class="project-img">
+              <div class="visual-label">PREDICTION ENGINE</div>
+            </div>
+            <p class="project-desc">Worked on multiple machine learning models involving prediction systems and data analysis for intelligent decision-making.</p>
+            <div class="project-tags">
+              <span>Machine Learning</span>
+              <span>Predictions</span>
+              <span>Data Analysis</span>
+            </div>
+            <button class="project-action magnetic-light">
+              <span>Analyze Module</span>
+              <i data-lucide="chevron-right"></i>
+            </button>
+          </div>
+
+          <!-- Database-Based Projects -->
+          <div class="glass-card project-card scroll-reveal" data-project="database-projects">
+            <div class="project-border-glow"></div>
+            <div class="project-header">
+              <div class="project-cat">Database & Data Management</div>
+              <h3 class="project-title">Database Projects</h3>
+            </div>
+            <div class="project-visual">
+              <img src="assets/images/database_projects.png" alt="Database Structured Systems Dashboard" class="project-img">
+              <div class="visual-label">STRUCTURED DATA SYSTEMS</div>
+            </div>
+            <p class="project-desc">Designed and managed structured database systems for efficient data storage, retrieval, and optimization across multiple applications.</p>
+            <div class="project-tags">
+              <span>SQL</span>
+              <span>Database Design</span>
+              <span>Data Management</span>
+            </div>
+            <button class="project-action magnetic-light">
+              <span>Analyze Module</span>
+              <i data-lucide="chevron-right"></i>
+            </button>
+          </div>
+    </section>
+
+    <!-- OPEN SOURCE EXPERIENCE SECTION -->
+    <section id="contributions" class="section timeline-section">
+      <div class="container">
+        <div class="section-header scroll-reveal">
+          <div class="section-tag">// COMMUNITY & COLLABORATION</div>
+          <h2 class="section-title">OPEN SOURCE TIMELINE</h2>
+        </div>
+
+        <div class="timeline-grid">
+          <div class="timeline-vertical-path">
+            <div class="timeline-progress-line"></div>
+            
+            <!-- SSoC Event -->
+            <div class="timeline-node scroll-reveal" data-index="0">
+              <div class="node-marker">
+                <div class="marker-pulse"></div>
+              </div>
+              <div class="node-content glass-card">
+                <div class="node-date">SUMMER 2026</div>
+                <h3 class="node-title">Social Summer of Code (SSoC) Season 5</h3>
+                <p class="node-desc">Contributed core logic libraries, automated bug workflows, and optimized secure system modules in repository communities.</p>
+                <div class="node-badges">
+                  <span class="badge-accent"><i data-lucide="check-circle-2"></i> Verified Contributor</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- GSSoC Event -->
+            <div class="timeline-node scroll-reveal" data-index="1">
+              <div class="node-marker">
+                <div class="marker-pulse"></div>
+              </div>
+              <div class="node-content glass-card">
+                <div class="node-date">SPRING 2026</div>
+                <h3 class="node-title">GirlScript Summer of Code (GSSoC) 2026</h3>
+                <p class="node-desc">Collaborative engineering focused on open-source codebases. Expanded functionality of modern tools, debugged frameworks, and integrated API features.</p>
+                <div class="node-badges">
+                  <span class="badge-accent"><i data-lucide="award"></i> Active Developer</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-extra scroll-reveal">
+            <div class="glass-card dev-matrix-card">
+              <h3 class="extra-title"><i><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github" style="width:20px; height:20px; vertical-align:middle; margin-right:8px;"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></i> GITHUB ENGINE SIMULATION</h3>
+              <p class="extra-desc">Real-time commit telemetry & active engineering contributions.</p>
+              
+              <!-- Custom Interactive Github Grid -->
+              <div class="github-simulation-grid" id="github-sim"></div>
+
+              <div class="timeline-metrics">
+                <div class="metric-mini">
+                  <span class="mini-val">50+</span>
+                  <span class="mini-label">Global PRs</span>
+                </div>
+                <div class="metric-mini">
+                  <span class="mini-val">12</span>
+                  <span class="mini-label">Repos Branched</span>
+                </div>
+                <div class="metric-mini">
+                  <span class="mini-val">100%</span>
+                  <span class="mini-label">Collaboration Score</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section id="education" class="section education-section">
+      <div class="container">
+        <div class="section-header scroll-reveal">
+          <div class="section-tag">// KNOWLEDGE BASE</div>
+          <h2 class="section-title">EDUCATION</h2>
+        </div>
+
+        <div class="edu-grid">
+          <!-- B.E. Card -->
+          <div class="glass-card edu-card scroll-reveal">
+            <div class="edu-year">Expected Graduation: 2028</div>
+            <h3 class="edu-degree">Bachelor of Engineering in Computer Science and Engineering</h3>
+            <h4 class="edu-inst">Prathyusha Engineering College – Anna University (Chennai)</h4>
+            <div class="edu-score-badge">
+              <span class="badge-num">CGPA: 8.9 / 10</span>
+            </div>
+            <p class="edu-details">
+              Focusing on algorithms, data structure designs, database optimizations, computer architectures, system security, and machine learning models.
+            </p>
+          </div>
+
+          <!-- HSC Card -->
+          <div class="glass-card edu-card scroll-reveal">
+            <div class="edu-year">Graduated</div>
+            <h3 class="edu-degree">Higher Secondary Course (HSC)</h3>
+            <h4 class="edu-inst">Alphonsa Matriculation Higher Secondary School (Kanniyakumari)</h4>
+            <div class="edu-score-badge">
+              <span class="badge-num">Percentage: 90.5%</span>
+            </div>
+            <p class="edu-details">
+              Advanced coursework in Mathematics, Physics, Chemistry, and Biology. Cultivated foundations in logical reasoning and software programming.
+            </p>
+          </div>
+
+          <!-- SSLC Card -->
+          <div class="glass-card edu-card scroll-reveal">
+            <div class="edu-year">Graduated</div>
+            <h3 class="edu-degree">Secondary School Leaving Certificate (SSLC)</h3>
+            <h4 class="edu-inst">Alphonsa Matriculation Higher Secondary School (Kanniyakumari)</h4>
+            <div class="edu-score-badge">
+              <span class="badge-num">Percentage: 91.4%</span>
+            </div>
+            <p class="edu-details">
+              Foundation in Mathematics, Science, Social Sciences, and Languages. Built early analytical thinking and academic discipline.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE & ACTIVITIES -->
+    <section id="activities" class="section activities-section">
+      <div class="container">
+        <div class="section-header scroll-reveal">
+          <div class="section-tag">// INVOLVEMENT</div>
+          <h2 class="section-title">EXPERIENCE & ACTIVITIES</h2>
+        </div>
+
+        <div class="activities-grid">
+          <div class="glass-card act-card scroll-reveal">
+            <div class="act-icon-wrapper"><i data-lucide="git-pull-request"></i></div>
+            <h3 class="act-title">Open-Source Collaboration</h3>
+            <p class="act-desc">Participated in global codebases, tracking issue flows, establishing pull requests, and matching coding guidelines.</p>
+          </div>
+
+          <div class="glass-card act-card scroll-reveal">
+            <div class="act-icon-wrapper"><i data-lucide="heart-handshake"></i></div>
+            <h3 class="act-title">Technical Mentoring Support</h3>
+            <p class="act-desc">Mentored peers in object-oriented programming concepts, algorithms, and application troubleshooting frameworks.</p>
+          </div>
+
+          <div class="glass-card act-card scroll-reveal">
+            <div class="act-icon-wrapper"><i data-lucide="blocks"></i></div>
+            <h3 class="act-title">Academic Coordination & Project Work</h3>
+            <p class="act-desc">Led technical design configurations for group modules, ensuring clean data exchanges and version integrity.</p>
+          </div>
+
+          <div class="glass-card act-card scroll-reveal">
+            <div class="act-icon-wrapper"><i data-lucide="help-circle"></i></div>
+            <h3 class="act-title">Technical Support Activities</h3>
+            <p class="act-desc">Contributed to college labs and workshop alignments, fixing configuration anomalies and assisting hardware setups.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FUTURE VISION SECTION -->
+    <section id="vision" class="section vision-section">
+      <div class="container">
+        <div class="section-header scroll-reveal">
+          <div class="section-tag">// HORIZONS</div>
+          <h2 class="section-title">FUTURE ROADMAP</h2>
+        </div>
+
+        <div class="roadmap-container scroll-reveal">
+          <div class="roadmap-track">
+            <div class="roadmap-progress"></div>
+          </div>
+          
+          <div class="roadmap-steps">
+            <div class="roadmap-step">
+              <div class="step-point">1</div>
+              <h3 class="step-title">Intelligent Digital Systems</h3>
+              <p class="step-desc">Engineering systems with robust design patterns that dynamically adapt to incoming query environments.</p>
+            </div>
+
+            <div class="roadmap-step">
+              <div class="step-point">2</div>
+              <h3 class="step-title">AI-Powered Technologies</h3>
+              <p class="step-desc">Fine-tuning computer vision algorithms and applying custom neural layers for endpoint recognition tasks.</p>
+            </div>
+
+            <div class="roadmap-step">
+              <div class="step-point">3</div>
+              <h3 class="step-title">Scalable Modern Applications</h3>
+              <p class="step-desc">Deploying distributed databases, microservices architectures, and utilizing cloud workflows.</p>
+            </div>
+
+            <div class="roadmap-step">
+              <div class="step-point">4</div>
+              <h3 class="step-title">Innovative Digital Experiences</h3>
+              <p class="step-desc">Crafting highly creative interactive frontends integrated with intelligent background services.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="section contact-section">
+      <div class="container">
+        <div class="section-header scroll-reveal">
+          <div class="section-tag">// ESTABLISH LINK</div>
+          <h2 class="section-title">CONTACT NODE</h2>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info scroll-reveal">
+            <h3 class="contact-info-headline">Let's build intelligent digital experiences together.</h3>
+            <p class="contact-info-desc">
+              Initiate connection for collaborative development, project consulting, open-source initiatives, or technical reviews.
+            </p>
+
+            <div class="info-details-list">
+              <div class="info-detail-item">
+                <i data-lucide="mail"></i>
+                <div class="detail-content">
+                  <span class="detail-label">Email Interface</span>
+                  <a href="mailto:rania63800@gmail.com" class="detail-value">rania63800@gmail.com</a>
+                </div>
+              </div>
+
+              <div class="info-detail-item">
+                <i data-lucide="phone"></i>
+                <div class="detail-content">
+                  <span class="detail-label">Direct Line</span>
+                  <a href="tel:+916380027109" class="detail-value">+91 63800 27109</a>
+                </div>
+              <div class="info-detail-item">
+                <i data-lucide="map-pin"></i>
+                <div class="detail-content">
+                  <span class="detail-label">Location Node</span>
+                  <span class="detail-value">Kanniyakumari, Tamil Nadu, India</span>
+                </div>
+              </div>
+
+              <div class="info-detail-item">
+                <i><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></i>
+                <div class="detail-content">
+                  <span class="detail-label">Repository Core</span>
+                  <a href="https://github.com/ranx-kernel" target="_blank" class="detail-value">github.com/ranx-kernel</a>
+                </div>
+              </div>
+
+              <div class="info-detail-item">
+                <i><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></i>
+                <div class="detail-content">
+                  <span class="detail-label">Professional Grid</span>
+                  <a href="https://www.linkedin.com/in/rania-r-942a33373" target="_blank" class="detail-value">linkedin.com/in/rania-r-942a33373</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-terminal scroll-reveal">
+            <div class="terminal-container glass-card">
+              <div class="terminal-bar">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+                <span class="terminal-session">CONNECTION_ESTABLISHED.IO</span>
+              </div>
+              
+              <!-- Form Panel -->
+              <form class="terminal-form" id="contact-form" onsubmit="return false;">
+                <!-- Put your Web3Forms Access Key here to make the contact form live -->
+                <input type="hidden" name="access_key" value="dbf8a34a-5185-41d5-b702-73dc9c72b60b">
+                <div class="form-group">
+                  <label for="form-name">USER_IDENTIFICATION (Name)</label>
+                  <input type="text" id="form-name" name="name" placeholder="Enter your name..." required>
+                </div>
+                <div class="form-group">
+                  <label for="form-email">ROUTING_ADDRESS (Email)</label>
+                  <input type="email" id="form-email" name="email" placeholder="Enter your email..." required>
+                </div>
+                <div class="form-group">
+                  <label for="form-message">TRANSMISSION_DATA (Message)</label>
+                  <textarea id="form-message" name="message" rows="4" placeholder="Draft your message..." required></textarea>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-submit magnetic-light" id="btn-submit-form">
+                  <span>Transmit Payload</span>
+                  <i data-lucide="send"></i>
+                </button>
+              </form>
+
+              <!-- Form Success Console Logs -->
+              <div class="form-console-log" id="form-console">
+                <div class="console-logs-list" id="console-logs-list">
+                  <!-- JS appends terminal log sequences here -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Project Focus Overlay Modal Container -->
+  <div class="project-overlay-modal" id="project-modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-wrapper glass-card">
+      <button class="modal-close magnetic" id="btn-close-modal">
+        <i data-lucide="x"></i>
+      </button>
+      <div class="modal-body" id="modal-content-area">
+        <!-- Rendered project content dynamically via JS -->
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container text-center">
+      <p class="footer-copy">&copy; 2026 RANIA R. Engineered with precision. All rights reserved.</p>
+      <p class="footer-system">LATENCY: 14ms | ENGINE CORE: OK</p>
+    </div>
+  </footer>
+
+  <!-- Floating Diagnostic Core Trigger Button -->
+  <div class="terminal-hud-trigger magnetic" id="terminal-trigger" title="Press ~ to activate OS Core Console">
+    <i data-lucide="terminal"></i>
+    <span class="trigger-ping"></span>
+  </div>
+
+  <!-- Secret Interactive Diagnostic Terminal OS Console -->
+  <div id="secret-terminal" class="terminal-overlay">
+    <div class="terminal-overlay-backdrop" id="terminal-backdrop"></div>
+    <div class="terminal-window glass-card">
+      <div class="terminal-window-header">
+        <div class="header-dots">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+        </div>
+        <div class="header-title">DIAGNOSTIC_OS_SHELL.EXE</div>
+        <button class="terminal-close-btn" id="btn-close-terminal">&times;</button>
+      </div>
+      <div class="terminal-window-body">
+        <div class="terminal-welcome">
+          RANIA R - COGNITIVE DIAGNOSTIC OPERATING SHELL v3.0<br>
+          ENTER <span class="cmd-hl">help</span> FOR CORE CAPABILITIES. PRESS <span class="cmd-hl">~</span> TO COLLAPSE CORE.
+        </div>
+        <div class="terminal-output" id="terminal-output-area"></div>
+        <div class="terminal-input-line">
+          <span class="input-prompt">rania@core:~$</span>
+          <input type="text" id="terminal-input-box" autofocus autocomplete="off" spellcheck="false">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating AI Voice Assistant Core Widget -->
+  <div id="ai-voice-core" class="voice-core-widget">
+    <div class="voice-widget-card">
+      <div class="voice-hud-header">
+        <span class="voice-status-dot"></span>
+        <span id="voice-status-text" class="voice-status">AI CORE: ONLINE</span>
+      </div>
+      <div class="voice-orb-container">
+        <!-- Pulse Rings -->
+        <div class="voice-pulse-ring ring-1"></div>
+        <div class="voice-pulse-ring ring-2"></div>
+        <!-- The visual Orb -->
+        <div class="voice-orb">
+          <i data-lucide="bot" class="voice-bot-icon"></i>
+        </div>
+        <!-- Soundwave visualizer lines -->
+        <div class="voice-waveform" id="voice-waveform">
+          <span class="wave-line line-1"></span>
+          <span class="wave-line line-2"></span>
+          <span class="wave-line line-3"></span>
+          <span class="wave-line line-4"></span>
+          <span class="wave-line line-5"></span>
+        </div>
+      </div>
+      <div class="voice-instructions">
+        <span id="voice-action-text" class="voice-action">Say 'Projects', 'About', 'Skills' or 'Contact'</span>
+      </div>
+      <button class="voice-mic-btn magnetic-light" id="btn-mic-toggle" title="Toggle Voice Recognition">
+        <i data-lucide="mic" class="mic-icon-on"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Script Imports -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script type="module" src="advanced-interactions.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
